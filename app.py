@@ -12,8 +12,10 @@ st.set_page_config(
 st.sidebar.title("⚙️ Parameter Asisten")
 st.sidebar.markdown("Atur konfigurasi asisten produktivitas kamu:")
 
-api_key = st.sidebar.text_input("Google Gemini API Key:", type="password", help="Masukkan API Key dari Google AI Studio")
-
+if "GEMINI_API_KEY" in st.secrets:
+    api_key = st.secrets["GEMINI_API_KEY"]
+else:
+    api_key = st.sidebar.text_input("Google Gemini API Key:", type="password", help="Masukkan API Key dari Google AI Studio")
 tone = st.sidebar.selectbox(
     "Gaya Bahasa (Tone):",
     ["Ramah & Suportif", "Strict & Disiplin", "Santai & Kasual"]
